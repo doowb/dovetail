@@ -3,31 +3,27 @@
   "description": "Make your application pluggable!",
   "version": "0.0.1",
   "homepage": "https://github.com/sellside/pluggable",
-
   "repository": {
-  	"type": "git",
-  	"url": "https://github.com/sellside/pluggable.git"
+    "type": "git",
+    "url": "https://github.com/sellside/pluggable.git"
   },
-
   "bugs": {
-  	"url": "https://github.com/sellside/pluggable/issues"
+    "url": "https://github.com/sellside/pluggable/issues"
   },
-
   "license": {
-  	"type": "MIT",
-  	"url": "https://github.com/sellside/pluggable/blob/master/LICENSE-MIT"
+    "type": "MIT",
+    "url": "https://github.com/sellside/pluggable/blob/master/LICENSE-MIT"
   },
-  
   "engines": {
-  	"node": ">=0.8.0"
+    "node": ">=0.8.0"
   },
-
   "main": "./lib/pluggable.js",
-
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "resolve-dep": "~0.2.0",
+    "ewait": "~0.2.0",
+    "async": "~0.2.9"
   },
-
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.0",
@@ -37,7 +33,6 @@
     "grunt-contrib-watch": "~0.5.3",
     "chai": "~1.8.1"
   },
-  
   "keywords": [
     "pluggable",
     "plugin",

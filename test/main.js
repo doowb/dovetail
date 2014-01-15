@@ -7,6 +7,8 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 
+var pluggable = require('../');
+
 describe('pluggable', function() {
 
 	before(function(){
