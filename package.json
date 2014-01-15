@@ -2,17 +2,17 @@
   "name": "pluggable",
   "description": "Make your application pluggable!",
   "version": "0.0.1",
-  "homepage": "https://github.com/sellside/pluggable",
+  "homepage": "https://github.com/assemble/pluggable",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sellside/pluggable.git"
+    "url": "https://github.com/assemble/pluggable.git"
   },
   "bugs": {
-    "url": "https://github.com/sellside/pluggable/issues"
+    "url": "https://github.com/assemble/pluggable/issues"
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/sellside/pluggable/blob/master/LICENSE-MIT"
+    "url": "https://github.com/assemble/pluggable/blob/master/LICENSE-MIT"
   },
   "engines": {
     "node": ">=0.8.0"

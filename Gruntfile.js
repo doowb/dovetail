@@ -1,6 +1,6 @@
 /*
  * pluggable
- * https://github.com/sellside/pluggable.git
+ * https://github.com/assemble/pluggable.git
  *
  * Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors
  * Licensed under the MIT license.
