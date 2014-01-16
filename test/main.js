@@ -7,9 +7,9 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 
-var pluggable = require('../');
+var Dovetail = require('../');
 
-describe('pluggable', function() {
+describe('Dovetail', function() {
 
 	before(function(){
 		// run any code before tests here

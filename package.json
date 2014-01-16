@@ -1,23 +1,23 @@
 {
-  "name": "pluggable",
+  "name": "dovetail",
   "description": "Make your application pluggable!",
   "version": "0.0.1",
-  "homepage": "https://github.com/assemble/pluggable",
+  "homepage": "https://github.com/assemble/dovetail",
   "repository": {
     "type": "git",
-    "url": "https://github.com/assemble/pluggable.git"
+    "url": "https://github.com/assemble/dovetail.git"
   },
   "bugs": {
-    "url": "https://github.com/assemble/pluggable/issues"
+    "url": "https://github.com/assemble/dovetail/issues"
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/assemble/pluggable/blob/master/LICENSE-MIT"
+    "url": "https://github.com/assemble/dovetail/blob/master/LICENSE-MIT"
   },
   "engines": {
     "node": ">=0.8.0"
   },
-  "main": "./lib/pluggable.js",
+  "main": "./lib/index.js",
   "dependencies": {
     "lodash": "~2.4.1",
     "resolve-dep": "~0.2.0",
