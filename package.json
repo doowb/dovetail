@@ -22,7 +22,8 @@
     "lodash": "~2.4.1",
     "resolve-dep": "~0.2.0",
     "ewait": "~0.2.0",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "globule": "~0.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
