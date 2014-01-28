@@ -26,20 +26,19 @@ describe('Dovetail', function() {
 
   it('should create and run a plugin', function(done) {
 
-    // add a test stage
-    Dovetail.plugins.addStage('first', 'first');
+    // add a test event
+    Dovetail.plugins.addEvent('first', 'first');
 
     var app = new App();
     var dovetail = new Dovetail(app);
 
     // add a new plugin
-    dovetail.createPlugin('test-plugin', 'this is just a test', { stage: 'first' }, function (params, next) {
-      console.log('params', params);
+    dovetail.createPlugin('test-plugin', 'this is just a test', { event: 'first' }, function (params, next) {
       next();
     });
 
     // run the plugin
-    dovetail.runStage('first', { foo: 'bar' }, done);
+    dovetail.runEvent('first', { foo: 'bar' }, done);
   });
 
 });
