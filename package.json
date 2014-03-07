@@ -24,7 +24,7 @@
     "ewait": "~0.2.0",
     "async": "~0.2.9",
     "globule": "~0.2.0",
-    "boson": "^0.1.2"
+    "boson": "~0.1.2"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
