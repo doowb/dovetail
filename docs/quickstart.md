@@ -14,15 +14,15 @@ var Dovetail = require('dovetail');
 
 // create an "application" to be pluggable
 var MyApp = function (options) {
-	// make it an EventEmitter
-	events.EventEmitter.call(this);
+  // make it an EventEmitter
+  events.EventEmitter.call(this);
 
-	// create a new instance of Dovetail
-	// passing in your application
-	this.dovetail = new Dovetail(this);
+  // create a new instance of Dovetail
+  // passing in your application
+  this.dovetail = new Dovetail(this);
 
-	// automatically load plugins
-	this.dovetail.resolve('/path/to/plugins/*.js', options);
+  // automatically load plugins
+  this.dovetail.resolve('/path/to/plugins/*.js');
 };
 
 require('util').inherits(MyApp, events.EventEmitter);
@@ -33,15 +33,7 @@ trigger them
 
 ```js
 MyApp.prototype.trigger = function (event, params, done) {
-	this.dovetail.runEvent(event, params, done);
-};
-```
-
-Also, provide a helper method on your application to allow plugins to self register:
-
-```js
-MyApp.prototype.registerPlugin = function (name, description, options, fn) {
-	this.dovetail.createPlugin(name, description, options, fn);
+  this.dovetail.runEvent(event, params, done);
 };
 ```
 
@@ -49,20 +41,39 @@ Now you can drop a javascript file into your plugins folder and it'll be registe
 
 ```js
 module.exports = function (app) {
-	var options = {
-		events: [ 'app:before:start' ] // list of events this plugin will listen for
-	};
 
-	app.registerPlugin('my-custom-plugin', 'This is an awesome plugin that runs before the application starts.', options, function (params, done) {
-		console.log('This is my custom plugin!');
-		console.log('event', params.event);
+  // create a plugin function that takes a params object and done callback function
+  var plugin = function (params, done) {
 
-		// add something to the params to be passed back to your app
-		params.startTime = new Date();
+    console.log('This is my custom plugin!');
+    console.log('event', params.event);
 
-		// let the app know that the plugin is finished
-		done();
-	});
+    // add something to the params to be passed back to your app
+    params.startTime = new Date();
+
+    // let the app know that the plugin is finished
+    done();
+  };
+
+  plugin.options = {
+
+    // name your plugin
+    name: 'my-custom-plugin',
+
+    // describe your plugin
+    description: 'This is an awesome plugin that runs before the application starts.',
+
+    // list of events your plugin will listen for
+    events: [ 'app:before:start' ]
+
+  };
+
+  // Return an object containing your plugin functions
+  // These will get registered with the app
+  var rtn = {};
+  rtn[plugin.options.name] = plugin;
+  return rtn;
+
 };
 ```
 
@@ -70,29 +81,29 @@ Create a function for your app that will trigger some events:
 
 ```js
 MyApp.prototype.start = function () {
-	var self = this;
+  var self = this;
 
-	// set up some paramets to keep track of state
-	self.params = {};
+  // set up some paramets to keep track of state
+  self.params = {};
 
-	// trigger that the app will be starting
-	self.trigger('app:before:start', self.params, function(err) {
-		if (err) {
-			throw new Error(err);
-		}
-		console.log('The app has started');
+  // trigger that the app will be starting
+  self.trigger('app:before:start', self.params, function(err) {
+    if (err) {
+      throw new Error(err);
+    }
+    console.log('The app has started');
 
-		// do some work
+    // do some work
 
 
-		// trigger that the app is going to end
-		self.trigger('app:before:end', self.params, function (err) {
-			if (err) {
-				throw new Error(err);
-			}
-			console.log('The app has ended');
-		});
+    // trigger that the app is going to end
+    self.trigger('app:before:end', self.params, function (err) {
+      if (err) {
+        throw new Error(err);
+      }
+      console.log('The app has ended');
+    });
 
-	});
+  });
 }
 ```
