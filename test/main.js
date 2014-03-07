@@ -31,11 +31,17 @@ describe('Dovetail', function() {
 
     var app = new App();
     var dovetail = new Dovetail(app);
+    var plugin = function (params, next) {
+      next();
+    };
+    var options = {
+      name: 'test-plugin',
+      description: 'this is just a test',
+      event: 'first'
+    };
 
     // add a new plugin
-    dovetail.createPlugin('test-plugin', 'this is just a test', { event: 'first' }, function (params, next) {
-      next();
-    });
+    dovetail.createPlugin(plugin, options);
 
     // run the plugin
     dovetail.runEvent('first', { foo: 'bar' }, done);
