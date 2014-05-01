@@ -20,31 +20,70 @@ require('util').inherits(App, events.EventEmitter);
 
 describe('Dovetail', function() {
 
-  before(function(){
-    // run any code before tests here
+  describe('general', function () {
+
+    it('should create and run a middleware', function(done) {
+
+      // add a test event
+      Dovetail.events.add('first', 'first');
+
+      var app = new App();
+      var dovetail = new Dovetail(app);
+      var middleware = function (params, next) {
+        next();
+      };
+      var options = {
+        name: 'test-middleware',
+        description: 'this is just a test',
+        event: 'first'
+      };
+
+      // add a new middleware
+      dovetail.use(middleware, options);
+
+      // run the middleware
+      dovetail.runEvent('first', { foo: 'bar' }, done);
+    });
+
   });
 
-  it('should create and run a middleware', function(done) {
 
-    // add a test event
-    Dovetail.events.add('first', 'first');
+  describe('Options', function () {
+    //var options = middleware.options || {};
+    //options.event = options.event || (options.event = middleware.options.events || middleware.event || middleware.events || 'default');
+    //options.name = options.name || middleware.name || key;
+    //options.app = options.app || middeware.app || self.app;
+    //options.logger = options.logger || middleware.logger  || self.logger;
+    //return self.use(middleware, options);
 
-    var app = new App();
-    var dovetail = new Dovetail(app);
-    var middleware = function (params, next) {
-      next();
-    };
-    var options = {
-      name: 'test-middleware',
-      description: 'this is just a test',
-      event: 'first'
-    };
+    it('when event is on `options` it should load that event', function (done) {
+      var app = new App();
+      var dovetail = new Dovetail(app);
+      dovetail.events.add('someRandomEvent', 'some:random:event');
 
-    // add a new middleware
-    dovetail.use(middleware, options);
+      var middleware = function (params, next) {
+        next();
+      };
+      middleware.options = {
+        event: 'some:random:event'
+      };
+      dovetail.resolve({'test-middleware-2': middleware});
+      dovetail.runEvent('some:random:event', { foo: 'baz'}, done);
+    });
 
-    // run the middleware
-    dovetail.runEvent('first', { foo: 'bar' }, done);
+    it('when event is on the middleware it should load that event', function (done) {
+      var app = new App();
+      var dovetail = new Dovetail(app);
+      dovetail.events.add('someRandomEvent3', 'some:random:event3');
+
+      var middleware = function (params, next) {
+        next();
+      };
+      middleware.event = 'some:random:event3';
+      dovetail.resolve({'test-middleware-3': middleware});
+      dovetail.runEvent('some:random:event3', { foo: 'baz'}, done);
+    });
+
   });
 
 });
