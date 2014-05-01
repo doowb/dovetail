@@ -24,26 +24,26 @@ describe('Dovetail', function() {
     // run any code before tests here
   });
 
-  it('should create and run a plugin', function(done) {
+  it('should create and run a middleware', function(done) {
 
     // add a test event
-    Dovetail.plugins.addEvent('first', 'first');
+    Dovetail.middleware.addEvent('first', 'first');
 
     var app = new App();
     var dovetail = new Dovetail(app);
-    var plugin = function (params, next) {
+    var middleware = function (params, next) {
       next();
     };
     var options = {
-      name: 'test-plugin',
+      name: 'test-middleware',
       description: 'this is just a test',
       event: 'first'
     };
 
-    // add a new plugin
-    dovetail.createPlugin(plugin, options);
+    // add a new middleware
+    dovetail.use(middleware, options);
 
-    // run the plugin
+    // run the middleware
     dovetail.runEvent('first', { foo: 'bar' }, done);
   });
 
