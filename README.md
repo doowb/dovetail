@@ -133,7 +133,7 @@ Pull requests are also encouraged, and if you find this project useful please co
 
 
 ## License
-Copyright (c) 2014 undefined, contributors.  
+Copyright (c) 2014 Brian Woodward, contributors.  Released under the MIT license
 
 ***
 
