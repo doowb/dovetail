@@ -27,7 +27,7 @@ describe('Dovetail', function() {
   it('should create and run a middleware', function(done) {
 
     // add a test event
-    Dovetail.middleware.addEvent('first', 'first');
+    Dovetail.events.add('first', 'first');
 
     var app = new App();
     var dovetail = new Dovetail(app);
