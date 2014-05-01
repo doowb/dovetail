@@ -18,6 +18,9 @@
     "node": ">=0.8.0"
   },
   "main": "./lib/index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
   "dependencies": {
     "lodash": "~2.4.1",
     "resolve-dep": "~0.2.0",
@@ -26,15 +29,10 @@
     "boson": "~0.1.2"
   },
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.7.0",
-    "grunt-readme": "~0.4.0",
-    "grunt-repos": "~0.1.2",
-    "grunt-mocha-test": "~0.8.1",
-    "grunt-contrib-watch": "~0.5.3",
     "chai": "~1.8.1"
   },
   "keywords": [
+    "middleware",
     "pluggable",
     "plugin",
     "plugins"
