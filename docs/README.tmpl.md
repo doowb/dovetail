@@ -1,21 +1,20 @@
-# {%= name %} {%= _.badge("fury") %} {%= _.badge("travis") %}
+# {%= name %} {%= badge("fury") %}
 
 > {%= description %}
 
 ## Getting Started
-{%= _.doc("quickstart.md") %}
+{%= docs("quickstart") %}
 
 ## Contributing
-{%= _.contrib("contributing.md") %}
+{%= contrib("contributing") %}
 
 ## Author
-{%= _.contrib("authors.md") %}
+{%= contrib("brian") %}
 
 
 ## License
-{%= copyright %}
-{%= license %}
+{%= copyright() %}{%= license() %}
 
 ***
 
-{%= _.include("footer.md") %}
+{%= include("footer") %}

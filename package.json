@@ -29,7 +29,8 @@
     "boson": "~0.1.2"
   },
   "devDependencies": {
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "verb": "^0.2.5"
   },
   "keywords": [
     "middleware",

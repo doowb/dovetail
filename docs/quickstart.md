@@ -21,14 +21,14 @@ var MyApp = function (options) {
   // passing in your application
   this.dovetail = new Dovetail(this);
 
-  // automatically load plugins
-  this.dovetail.resolve('/path/to/plugins/*.js');
+  // automatically load middleware
+  this.dovetail.resolve('/path/to/middleware/*.js');
 };
 
 require('util').inherits(MyApp, events.EventEmitter);
 ```
 
-Nothing else is required, but the plugins won't run until you
+Nothing else is required, but the middleware won't run until you
 trigger them
 
 ```js
@@ -37,41 +37,42 @@ MyApp.prototype.trigger = function (event, params, done) {
 };
 ```
 
-Now you can drop a javascript file into your plugins folder and it'll be registered:
+Now you can drop a javascript file into your middleware folder and it'll be registered:
 
 ```js
 module.exports = function (app) {
 
-  // create a plugin function that takes a params object and done callback function
-  var plugin = function (params, done) {
+  // create a middleware function that takes a params object and done callback function
+  var middleware = function (params, next) {
 
-    console.log('This is my custom plugin!');
+    console.log('This is my custom middleware!');
     console.log('event', params.event);
 
     // add something to the params to be passed back to your app
     params.startTime = new Date();
 
-    // let the app know that the plugin is finished
-    done();
+    // let the app know that the middleware is finished
+    // and the next middleware can run
+    next();
   };
 
-  plugin.options = {
+  middleware.options = {
 
-    // name your plugin
-    name: 'my-custom-plugin',
+    // name your middleware
+    name: 'my-custom-middleware',
 
-    // describe your plugin
-    description: 'This is an awesome plugin that runs before the application starts.',
+    // describe your middleware
+    description: 'This is an awesome middleware that runs before the application starts.',
 
-    // list of events your plugin will listen for
+    // list of events your middleware will listen for
     events: [ 'app:before:start' ]
 
   };
 
-  // Return an object containing your plugin functions
+  // Return an object containing your middleware functions
   // These will get registered with the app
   var rtn = {};
-  rtn[plugin.options.name] = plugin;
+  rtn[middleware.options.name] = middleware;
   return rtn;
 
 };
