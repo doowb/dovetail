@@ -32,10 +32,13 @@ function Dovetail(app, logger) {
   this.app = app;
   this.logger = logger;
 
-  // make sure each instance has access to events in case something else needs them
+  // make sure each instance has access to
+  // events in case something else needs them
   this.events = events;
 };
+
 Dovetail.events = events;
+
 
 
 Dovetail.prototype.setEventCache = function (event, middleware) {
@@ -151,9 +154,9 @@ Dovetail.prototype.resolve = function (_middleware) {
     // options could be directly on the middleware object
     var options = middleware.options;
 
-    options.event = options.event || (options.event = middleware.options.events || middleware.event || middleware.events || 'default');
-    options.name = options.name || middleware.name || key;
-    options.app = options.app || middleware.app || self.app;
+    options.event  = options.event  || (options.events || middleware.event || middleware.events || 'default');
+    options.name   = options.name   || middleware.name    || key;
+    options.app    = options.app    || middleware.app     || self.app;
     options.logger = options.logger || middleware.logger  || self.logger;
 
     return self.use(middleware, options);
