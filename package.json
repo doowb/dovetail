@@ -18,10 +18,10 @@
     "test": "mocha -R spec"
   },
   "dependencies": {
-    "lodash": "~2.4.1",
-    "async": "~0.2.9",
-    "globule": "~0.2.0",
-    "boson": "~0.1.2"
+    "async": "^0.8.0",
+    "globule": "^0.2.0",
+    "lodash": "^2.4.1",
+    "plasma": "^0.2.7"
   },
   "devDependencies": {
     "chai": "^1.9.1",
