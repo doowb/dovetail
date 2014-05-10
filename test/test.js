@@ -16,9 +16,52 @@ var App = function() {
   this.appName = 'test-app';
 };
 
+
+/**
+ * TODO:
+ *  - getEventCache
+ *  - setEventCache
+ *  - getCache
+ *  - setCache
+ *  - parseEvents
+ */
+
+
+
+
 require('util').inherits(App, events.EventEmitter);
 
 describe('Dovetail', function() {
+
+  describe('general', function () {
+
+    /**
+     * Shout throw an error since name is not defined
+     */
+
+    // it('should create and run a middleware', function(done) {
+
+    //   // add a test event
+    //   Dovetail.events.add('first', 'first');
+
+    //   var app = new App();
+    //   var dovetail = new Dovetail(app);
+    //   var middleware = function (params, next) {
+    //     next();
+    //   };
+    //   var options = {
+    //     description: 'this is just a test',
+    //     event: 'first'
+    //   };
+
+    //   // add a new middleware
+    //   dovetail.use(middleware, options);
+
+    //   // run the middleware
+    //   dovetail.runEvent('first', { foo: 'bar' }, done);
+    // });
+  });
+
 
   describe('general', function () {
 
