@@ -1,31 +1,26 @@
 /**
- * Assemble
- *
- * Assemble <http://assemble.io>
- * Created and maintained by Jon Schlinkert and Brian Woodward
- *
- * Copyright (c) 2014 Upstage.
+ * Copyright (c) 2014 Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
 
 // Node.js
 var path = require('path');
-
-// node_modules
 var glob = require('globule');
 var plasma = require('plasma');
 var async = require('async');
 var _ = require('lodash');
 
-// local modules
 var events = require('./lib/events');
 var Middleware = require('./lib/middleware');
+var utils = require('./lib/utils');
+var isEventMatch = utils.isEventMatch;
 
-// return true if a direct match or a wildcard match
-var isEventMatch = function (a, b) {
-  return (a === b) || a === '*';
-};
 
+/**
+ * Dovetail
+ * @param  {[type]}  app     [description]
+ * @param  {[type]}  logger  [description]
+ */
 
 function Dovetail(app, logger) {
   if (!(this instanceof Dovetail)) {
@@ -63,6 +58,12 @@ Dovetail.prototype.getCache = function (name) {
 };
 
 
+/**
+ * [parseEvents description]
+ * @param   {Array}  _events  Middlware events
+ * @return  {[type]}          [description]
+ */
+
 Dovetail.prototype.parseEvents = function (_events) {
   _events = !Array.isArray(_events) ? [_events] : _events;
 
@@ -70,13 +71,14 @@ Dovetail.prototype.parseEvents = function (_events) {
     var segment = event.split(':');
     var isMatch = false;
 
-    _.map(_events, function (middlewareEvent) {
+    _(_events).map(function (middlewareEvent) {
       var stage = middlewareEvent.split(':');
 
       var first  = isEventMatch(stage[0], segment[0]);
       var second = isEventMatch(stage[1], segment[1]);
       var third  = isEventMatch(stage[2], segment[2]);
 
+      // Return `false` if all three segments don't match
       isMatch = isMatch || (first && second && third);
     });
     return isMatch;
@@ -124,6 +126,7 @@ Dovetail.prototype.use = function (fn, options) {
   var events = (fn.options && (fn.options.event || fn.options.events)) || options.event || options.events || [];
   this.addListeners(events, middleware);
   this.setCache(name, middleware);
+
   return middleware;
 };
 
@@ -152,6 +155,7 @@ Dovetail.prototype.resolve = function (_middleware) {
     options.name = options.name || middleware.name || key;
     options.app = options.app || middleware.app || self.app;
     options.logger = options.logger || middleware.logger  || self.logger;
+
     return self.use(middleware, options);
   });
 };
