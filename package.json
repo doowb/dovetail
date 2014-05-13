@@ -15,7 +15,8 @@
   },
   "main": "./index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec",
+    "start": "watch --files=\"{lib,test}/**/*.js\" --command=test"
   },
   "dependencies": {
     "async": "^0.8.0",

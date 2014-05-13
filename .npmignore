@@ -1,4 +1,7 @@
-lib-cov
+# dotfiles
+*.rar
+*.sublime-*
+*.zip
 *.seed
 *.log
 *.csv
@@ -6,17 +9,16 @@ lib-cov
 *.out
 *.pid
 *.gz
-
-pids
-logs
-results
-
-npm-debug.log
+# folders
 node_modules
+experimental
+vendor
+temp
 tmp
-*.sublime-*
-
-Gruntfile.js
+# logs
+npm-debug.log
+# Always-ignore files
+TODO.md
 test
 bower.json
 .jshintrc
