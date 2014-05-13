@@ -131,9 +131,9 @@ Pull requests are also encouraged, and if you find this project useful please co
 + [twitter/doowb](http://twitter.com/doowb)
 
 
-
 ## License
-Copyright (c) 2014 Brian Woodward, contributors.  Released under the MIT license
+Copyright (c) 2014 Brian Woodward, contributors.  
+Released under the MIT license
 
 ***
 

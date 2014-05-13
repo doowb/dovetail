@@ -13,21 +13,20 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "main": "./lib/index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "mocha -R spec",
     "start": "watch --files=\"{lib,test}/**/*.js\" --command=test"
   },
   "dependencies": {
-    "lodash": "~2.4.1",
-    "resolve-dep": "~0.2.0",
-    "async": "~0.2.9",
-    "globule": "~0.2.0",
-    "boson": "~0.1.2"
+    "async": "^0.8.0",
+    "globule": "^0.2.0",
+    "lodash": "^2.4.1",
+    "plasma": "^0.2.7"
   },
   "devDependencies": {
-    "chai": "~1.8.1",
-    "verb": "^0.2.5"
+    "chai": "^1.9.1",
+    "verb": "^0.2.6"
   },
   "keywords": [
     "middleware",
