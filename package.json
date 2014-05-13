@@ -15,7 +15,8 @@
   },
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec",
+    "start": "watch --files=\"{lib,test}/**/*.js\" --command=test"
   },
   "dependencies": {
     "lodash": "~2.4.1",
